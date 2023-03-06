@@ -85,6 +85,7 @@ catch(Exception ex){
         Rol = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         Insertar_usu = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel28 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,31 +113,31 @@ catch(Exception ex){
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1040, 30));
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1100, 30));
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 204));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Usuarios");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Usuario");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
-        jPanel2.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 270, -1));
+        jPanel2.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 270, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Clave");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
-        jPanel2.add(Clave, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 270, -1));
+        jPanel2.add(Clave, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 270, -1));
 
         Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreActionPerformed(evt);
             }
         });
-        jPanel2.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 270, -1));
+        jPanel2.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 270, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Nombre");
@@ -151,14 +152,14 @@ catch(Exception ex){
                 byconex2ActionPerformed(evt);
             }
         });
-        jPanel2.add(byconex2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 70, 50));
+        jPanel2.add(byconex2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 70, 50));
 
         Apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ApellidoActionPerformed(evt);
             }
         });
-        jPanel2.add(Apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 270, -1));
+        jPanel2.add(Apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 270, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Apellido");
@@ -169,7 +170,7 @@ catch(Exception ex){
                 CorreoActionPerformed(evt);
             }
         });
-        jPanel2.add(Correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 270, -1));
+        jPanel2.add(Correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 270, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Correo");
@@ -185,14 +186,14 @@ catch(Exception ex){
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 490, 390));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 550, 400));
 
         Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Admin", "Visita", "Empleado" }));
         Rol.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +201,7 @@ catch(Exception ex){
                 RolActionPerformed(evt);
             }
         });
-        jPanel2.add(Rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 270, -1));
+        jPanel2.add(Rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 270, -1));
 
         jButton1.setText("Editar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +209,7 @@ catch(Exception ex){
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, -1, -1));
 
         Insertar_usu.setText("Crear");
         Insertar_usu.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +217,7 @@ catch(Exception ex){
                 Insertar_usuActionPerformed(evt);
             }
         });
-        jPanel2.add(Insertar_usu, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, -1, -1));
+        jPanel2.add(Insertar_usu, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, -1, -1));
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/hacia-atras.png"))); // NOI18N
         jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,22 +231,25 @@ catch(Exception ex){
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator1)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(83, 83, 83)
                 .addComponent(jLabel28)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 41, Short.MAX_VALUE)
+                .addGap(0, 34, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel28)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -395,5 +399,6 @@ catch(Exception ex){
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
