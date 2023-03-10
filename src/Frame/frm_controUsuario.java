@@ -6,12 +6,15 @@
 package Frame;
 
 import ej_proyecto.Formi;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +25,8 @@ import javax.swing.JOptionPane;
 
 public class frm_controUsuario extends javax.swing.JFrame {
 
+    
+    DefaultTableModel usuario;
     /**
      * Creates new form frm_controUsuario
      */
@@ -49,10 +54,156 @@ catch(Exception ex){
     
     public frm_controUsuario() {
         initComponents();
+        this.usuario = (DefaultTableModel) Table_usuario.getModel();
+        Mostrardatos("");
         
     }
     
+    public void filtrar(String valora){
+    
+    
+    MyConnection cc = new MyConnection();
+    
+    Connection cn =  MyConnection.getConnection();
+    
+   
+    
+    usuario.addColumn("Usuario");
+    usuario.addColumn("Clave");
+    usuario.addColumn("Nombre");
+    usuario.addColumn("Apellido");
+    usuario.addColumn("Correo");
+    usuario.addColumn("Rol");
+    
+    this.Table_usuario.setModel(usuario);
+    
+    String sql;
+    
+    if (valora.equals("")){
+    
+    sql = "Select * FROM usuarios";
+        
+    }
+    
+    else{
+    
+    sql = "Select * FROM usuarios WHERE Usuario='"+Usuario.getName()+"'";
+ 
+    }
+    String [] datos = new String[6];
+    
+    try {
+    
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+    
+        
+        while(rs.next()){
+        
+        datos[0]=rs.getString(1);
+        datos[1]=rs.getString(2);
+        datos[2]=rs.getString(3);
+        datos[3]=rs.getString(4);
+        datos[4]=rs.getString(5);
+        datos[5]=rs.getString(6);
+        usuario.addRow(datos);
+        }
+        
+        Table_usuario.setModel(usuario);
+    }  
+    
+    catch (SQLException ex) {
+            Logger.getLogger(frm_controUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        
+             JOptionPane.showMessageDialog(null,"Error" + ex);
+    }
+    
+    
+    
+    
+    }
+    
+    public final void Mostrardatos(String valor){
+    
+    MyConnection cc = new MyConnection();
+    
+    Connection cn =  MyConnection.getConnection();
+    
+   RefrescarTabla();
+    
+    usuario.addColumn("Usuario");
+    usuario.addColumn("Clave");
+    usuario.addColumn("Nombre");
+    usuario.addColumn("Apellido");
+    usuario.addColumn("Correo");
+    usuario.addColumn("Rol");
+    
+    this.Table_usuario.setModel(usuario);
+    
+    String sql;
+    
+    if (valor.equals("")){
+    
+    sql = "Select * FROM usuarios";
+        
+    }
+    
+    else{
+    
+    sql = "Select * FROM usuarios WHERE Usuario='"+Usuario.getText()+"'";
+ 
+    }
+    String [] datos = new String[6];
+    
+    try {
+    
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+    
+        
+        while(rs.next()){
+        
+        datos[0]=rs.getString(1);
+        datos[1]=rs.getString(2);
+        datos[2]=rs.getString(3);
+        datos[3]=rs.getString(4);
+        datos[4]=rs.getString(5);
+        datos[5]=rs.getString(6);
+        usuario.addRow(datos);
+        }
+        
+        Table_usuario.setModel(usuario);
+    }  
+    
+    catch (SQLException ex) {
+            Logger.getLogger(frm_controUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        
+             JOptionPane.showMessageDialog(null,"Error" + ex);
+    }
+    
+    
+    
+    
+    }
+    
+     public void RefrescarTabla(){
 
+    try{
+    
+        usuario.setColumnCount(0);
+        usuario.setRowCount(0);
+        Table_usuario.revalidate();
+    
+    }
+    
+    catch(Exception ex){
+    
+    JOptionPane.showMessageDialog(null,"Error" + ex);
+    }
+
+
+}
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,9 +233,12 @@ catch(Exception ex){
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Table_usuario = new javax.swing.JTable();
         Rol = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         Insertar_usu = new javax.swing.JButton();
+        filtro = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel28 = new javax.swing.JLabel();
 
@@ -120,11 +274,17 @@ catch(Exception ex){
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Usuarios");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Usuario");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+
+        Usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioActionPerformed(evt);
+            }
+        });
         jPanel2.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 270, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -182,15 +342,31 @@ catch(Exception ex){
 
         jPanel1.setBackground(new java.awt.Color(228, 233, 233));
 
+        Table_usuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(Table_usuario);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 550, 400));
@@ -218,6 +394,14 @@ catch(Exception ex){
             }
         });
         jPanel2.add(Insertar_usu, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, -1, -1));
+
+        filtro.setText("filtrar");
+        filtro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroActionPerformed(evt);
+            }
+        });
+        jPanel2.add(filtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, -1, -1));
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/hacia-atras.png"))); // NOI18N
         jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -289,7 +473,7 @@ catch(Exception ex){
 
     private void Insertar_usuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Insertar_usuActionPerformed
         // TODO add your handling code here:
-        
+       
           String usu = Usuario.getText();
         String cont = Clave.getText();
         String nom = Nombre.getText();
@@ -323,7 +507,10 @@ catch(Exception ex){
             if(ps.executeUpdate() > 0)
             {
                 JOptionPane.showMessageDialog(null, "Nuevo Usuario Agregado");
+                Mostrardatos("");
+                
                 Limpiar();
+                
             }
             
         } catch (SQLException ex) {
@@ -339,6 +526,20 @@ catch(Exception ex){
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_UsuarioActionPerformed
+
+    private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
+        // TODO add your handling code here:
+        filtrar("");
+    }//GEN-LAST:event_filtroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,8 +583,10 @@ catch(Exception ex){
     private javax.swing.JButton Insertar_usu;
     private javax.swing.JTextField Nombre;
     private javax.swing.JComboBox<String> Rol;
+    private javax.swing.JTable Table_usuario;
     private javax.swing.JTextField Usuario;
     private javax.swing.JButton byconex2;
+    private javax.swing.JButton filtro;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
@@ -399,6 +602,7 @@ catch(Exception ex){
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
